@@ -1,0 +1,94 @@
+extends ./_layout.pug
+
+block append body
+  +narrowContainer
+    +heading1(size=1).mb-1 AdminX
+    +paragraph.mb-8.text-ink-lighter Use to create an AdminX application...
+
+    +code.mb-8(language="js").
+      import express from 'express';
+
+      import adminx from '@practio/adminx';
+
+      const appRouter = express.Router();
+
+      appRouter.get('/', (req, res) => {
+        res.render('home');
+      });
+
+      const app = adminx(appRouter, {
+        auth: {
+          cookieName: 'pvac-dev',
+          baseUrl: 'http://localhost:9040',
+        },
+        views: 'src/views',
+        enableViewEngineCache: false,
+      });
+
+      const port = 4000;
+
+      app.listen(port, () => console.info(`Listening on http://localhost:${port}`));
+
+
+    +heading3(size=3).mb-1 Locals
+    +paragraph.mb-8.text-ink-lighter Use in views...
+
+    +heading4(size=4).mb-1 Href
+    +paragraph.mb-8.text-ink-lighter Use to resolve urls.
+    +example.mb-8
+      +exampleDisplay
+        +badge(color="blue")= href("~/tests")
+        +badge(color="blue")= href("~/tests", { search: 'test' })
+      +exampleSourceCode.
+        = href("~/tests")
+        = href("~/tests", { search: 'test' })
+
+    +heading3(size=3).mb-1 Is Active Href
+    +paragraph.mb-8.text-ink-lighter Use to check if an URL is active.
+    +example.mb-8
+      +exampleDisplay
+        +badge(color="blue")= isActiveHref(href("~/test"))
+      +exampleSourceCode.
+        = isActiveHref(href("~/test"))
+
+    +heading3(size=3).mb-1 Base Href
+    +paragraph.mb-8.text-ink-lighter Use to get the base URL of the App.
+    +example.mb-8
+      +exampleDisplay
+        +badge(color="blue")= baseHref
+      +exampleSourceCode.
+        = baseHref
+
+    +heading3(size=3).mb-1 Full Href
+    +paragraph.mb-8.text-ink-lighter Use to get the full URL of the Request.
+    +example.mb-8
+      +exampleDisplay
+        +badge(color="blue")= fullHref
+      +exampleSourceCode.
+        = fullHref
+
+    +heading3(size=3).mb-1 Canonical Href
+    +paragraph.mb-8.text-ink-lighter Use to get the canonical URL of the Request.
+    +example.mb-8
+      +exampleDisplay
+        +badge(color="blue")= canonicalHref
+      +exampleSourceCode.
+        = canonicalHref   
+
+    +heading2(size=3).mb-1 Error Handling
+    +paragraph Adminx apps have two built in error handlers. One that handles `POST` requests, that redirect back to the `referer` with an error code, and one that handles all errors by rendering an error page.
+    +paragraph All the error handlers are chainable in the sense that they all call `next(err)`.
+    +paragraph You can enable error details by the setting the `returnErrorDetails` option to `true`.
+
+mixin example
+  .shadow.rounded-lg.bg-white&attributes(attributes)
+    block
+
+mixin exampleDisplay
+  .p-6.rounded-t-lg.flex.flex-wrap.gap-4&attributes(attributes)
+    block
+
+mixin exampleSourceCode
+  .p-6.bg-sky-lighter.rounded-b-lg.overflow-auto
+    +code(language="js")&attributes(attributes)
+      block

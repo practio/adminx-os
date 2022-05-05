@@ -1,0 +1,26 @@
+extends ../pug/layout.pug
+
+include @practio/windy/pug/mixins/icons/solid/chevronDown.pug
+include @practio/windy/pug/mixins/icons/solid/chevronRight.pug
+include @practio/windy/pug/mixins/link.pug
+
+block append body
+  .absolute.top-0.w-full.h-full
+    .w-full.h-full.flex.flex-col.items-center.justify-center.text-center
+      +paragraph.uppercase.font-semibold.text-red.mb-1= `${statusCode} error`
+      +heading1.font-extrabold.mb-1= statusMessage
+      +paragraph.text-ink-lighter.mb-12 Sorry, we couldn’t process your request.
+      +secondaryButton.mb-4(size="large" href=href("~/"))
+        | Go back home
+        +chevronRightSolidIcon
+      if error && error.stack && returnErrorDetails
+        +link.inline-flex.items-center.text-ink-lighter(href=(href() + "#stack"))
+          | Stack
+          +chevronDownSolidIcon
+
+    if error
+      .absolute.bottom-0.w-full.p-4.text-center
+        +paragraph.text-ink-lighter.text-xs.uppercase.mb-2= error.id
+
+      if error.stack && returnErrorDetails
+        +yaml(error.stack)#stack.w-full.h-16

@@ -1,0 +1,6 @@
+{
+  "extends": ["@practio/practio"],
+  "rules": {
+    "node/no-deprecated-api": 1
+  }
+}

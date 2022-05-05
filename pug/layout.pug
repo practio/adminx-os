@@ -1,0 +1,54 @@
+doctype html
+
+include @practio/windy/pug/mixins.pug
+
+include ./mixins.pug
+
+html.h-full(lang=language)
+  head
+    base(href=baseHref)
+    meta(charset="utf-8")
+    title
+      block title
+        | Practio
+    meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    if description
+      meta(name="description" content=description)
+    link(rel="shortcut icon" href="favicon.ico")
+    link(rel="canonical" href=canonicalHref)
+    link(rel="preload" href="fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous")
+    link(rel="stylesheet" href="windy.css")
+    link(rel="stylesheet" href="libs/highlight.js/styles/github-dark.min.css")
+    if csrfToken
+      meta(name="csrf" content=csrfToken)
+    block head
+  body.h-full.bg-white.antialiased
+    block body
+      +nav
+        +link(href=baseHref)
+          +brand
+        block nav
+        if user
+          - const fullName = [user.firstName, user.lastName].filter(Boolean).join(' ')
+          - const initials = [user.firstName.substr(0, 1), user.lastName.substr(0, 1)].join('')
+          button.flex.items-center.ml-auto
+            .h-8.w-8.rounded-full.flex.justify-center.items-center.bg-blue-dark.text-blue-lighter.text-sm.font-bold(data-target="#user-dialog" data-action="showModal")= initials
+            .ml-2.hidden(class="sm:block" data-target="#user-dialog" data-action="showModal")= fullName
+
+    block dialogs
+      if user
+        +modalDialog#user-dialog
+          +modalHeader
+            +modalTitle Log out?
+          +modalBody
+            +paragraph= `Hello ${user.firstName}, Are you sure you want to log out?`
+          +modalFooter
+            +button(kind="ghost" data-action="close") Cancel
+            +button(kind="primary" href=href("~/logout")) Yes
+
+    block scripts
+      script(src="windy.js")
+      script(src="libs/highlight.js/highlight.min.js")
+      +script.
+        hljs.highlightAll()

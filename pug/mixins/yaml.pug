@@ -1,0 +1,4 @@
+include ./code.pug
+
+mixin yaml(code)
+  +code(language="yaml")&attributes(attributes)= YAML.stringify(code)

@@ -1,0 +1,7 @@
+include @practio/windy/pug/mixins/icons/solid/mail.pug
+include @practio/windy/pug/mixins/link.pug
+
+mixin email(email)
+  if email
+    +mailSolidIcon
+    +link(href=`mailto:${email}`)&attributes(attributes)= email

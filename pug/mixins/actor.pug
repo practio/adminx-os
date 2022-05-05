@@ -1,0 +1,9 @@
+mixin actorBadge(actor)
+  if actor
+    case actor.type
+      when "system"
+        +badge(color="pink") System
+      when "user"
+        +badge(color="blue") User
+      when "guest"
+        +badge(color="yellow") Guest

@@ -1,0 +1,6 @@
+mixin code
+  - const { language, ...attrs } = attributes;
+
+  pre&attributes(attributes)
+    code.text-md(style="font-family: 'Source Code Pro', monospace;" data-language=language)
+      block

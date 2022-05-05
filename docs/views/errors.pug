@@ -1,0 +1,10 @@
+extends ./_layout.pug
+
+block append body
+  +narrowContainer
+    +heading1(size=1).mb-1 Errors
+    +paragraph.mb-8.text-ink-lighter Examples of errors...
+
+    .flex.gap-4
+      +secondaryButton(href=href("~/errors/404")) 404
+      +secondaryButton(href=href("~/errors/500")) 500

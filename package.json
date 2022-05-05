@@ -1,0 +1,81 @@
+{
+  "name": "@practio/adminx",
+  "version": "7.1.0",
+  "description": "",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./auth": "./src/auth.js"
+  },
+  "scripts": {
+    "build": "sass --load-path node_modules scss/adminx.scss css/adminx.css",
+    "docs": "nodemon docs/main.js",
+    "eslint:fix": "eslint --fix . || echo Unfixable errors were ignored and should be caught by the tests",
+    "format": "npm run eslint:fix && npm run prettier:write",
+    "init-husky": "node -e \"if(process.env.CI === undefined && !['test', 'staging', 'production'].includes(process.env.NODE_ENV)) { require('husky').install(); }\"",
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run init-husky",
+    "prettier:write": "prettier --loglevel warn --write \"**/*.@(js|jsx|ts|mjs|json|css|scss|less|html|htm|md|yml|yaml)\"",
+    "preversion": "npm test",
+    "test": "mocha"
+  },
+  "prettier": "@practio/prettier-config",
+  "lint-staged": {
+    "*.@(js|jsx|ts|mjs)": [
+      "eslint --fix"
+    ],
+    "*.@(js|jsx|ts|mjs|json|css|scss|less|html|htm|md|yml|yaml)": [
+      "prettier --loglevel warn --write"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/practio/adminx.git"
+  },
+  "author": "Jonatan Pedersen",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/practio/adminx/issues"
+  },
+  "homepage": "https://github.com/practio/adminx#readme",
+  "devDependencies": {
+    "@practio/eslint-config-practio": "10.1.0",
+    "@practio/prettier-config": "5.0.0",
+    "@practio/user-roles": "2.1.0",
+    "chai": "4.3.6",
+    "cross-env": "7.0.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
+    "mocha": "9.2.1",
+    "mocha-eslint": "7.0.0",
+    "nodemon": "2.0.15",
+    "prettier": "2.5.1"
+  },
+  "type": "module",
+  "dependencies": {
+    "@highlightjs/cdn-assets": "^11.4.0",
+    "@practio/errors": "^2.0.0",
+    "@practio/has-restricted-user-roles": "^1.0.13",
+    "body-parser": "^1.19.2",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "dayjs": "^1.10.8",
+    "debug": "^4.3.3",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "inter-ui": "^3.19.3",
+    "node-fetch": "^3.2.2",
+    "pug": "^3.0.2",
+    "resolve": "^1.22.0",
+    "sass": "^1.49.9",
+    "statuses": "^2.0.1",
+    "yaml": "^1.10.2"
+  },
+  "peerDependencies": {
+    "@practio/windy": "^3.0.0"
+  },
+  "mocha": {
+    "exit": true
+  }
+}

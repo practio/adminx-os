@@ -1,0 +1,5 @@
+include ./text.pug
+
+mixin number(number)
+  if typeof number === 'number'
+    +text= new Intl.NumberFormat(locale).format(number)

@@ -1,0 +1,7 @@
+include @practio/windy/pug/mixins/icons/solid/phone.pug
+include @practio/windy/pug/mixins/link.pug
+
+mixin phone(phone)
+  if phone
+    +phoneSolidIcon
+    +text&attributes(attributes)= phone

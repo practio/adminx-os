@@ -1,0 +1,5 @@
+include ./text.pug
+
+mixin cpr(cpr, mask = true)
+  if cpr
+    +text&attributes(attributes)= [cpr.substr(0,6), mask ? '☓☓☓☓' : cpr.substr(6,4)].join('-')

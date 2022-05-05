@@ -1,0 +1,4 @@
+include ./code.pug
+
+mixin json(code)
+  +code(language="json")&attributes(attributes)= JSON.stringify(code, null, 4)

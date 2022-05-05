@@ -1,0 +1,5 @@
+include @practio/windy/pug/mixins.pug
+
+mixin url(url)
+  if url
+    +link(href=url)&attributes(attributes)= url

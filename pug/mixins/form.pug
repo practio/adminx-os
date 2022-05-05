@@ -1,0 +1,6 @@
+mixin form()
+  form&attributes(attributes)
+    input(type="hidden" name="_csrf" value=csrfToken)
+    if callbackUrl
+      input(type="hidden" name="callbackUrl" value=callbackUrl)
+    block

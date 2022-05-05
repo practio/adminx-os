@@ -1,0 +1,4 @@
+mixin dateTime(date)
+  if date
+    - const dateObj = new Date(date);
+    time(datetime=dateObj.toISOString())&attributes(attributes)= dayjs(dateObj).tz('Europe/Copenhagen').format('DD/MM/YYYY・HH:mm')

@@ -1,0 +1,153 @@
+extends ./_layout.pug
+
+block append body
+  +narrowContainer
+    +heading1(size=3).mb-1 Mixins
+    +paragraph.mb-8.text-ink-lighter Use these primitives for diplaying information...
+
+    +heading3(size=3).mb-1 Actor Badge
+    +paragraph.mb-8.text-ink-lighter Use to display Brand.
+    +example.mb-8
+      +exampleDisplay
+        +actorBadge({ type: 'guest' })
+        +actorBadge({ type: 'system' })
+        +actorBadge({ type: 'user', id: 'afac1602-cdde-4f9e-bcf9-8b61806986a8' })
+      +exampleSourceCode.
+        +actorBadge({ type: 'guest' })
+        +actorBadge({ type: 'system' })
+        +actorBadge({ type: 'user', id: 'afac1602-cdde-4f9e-bcf9-8b61806986a8' })
+
+    +heading3(size=3).mb-1 Brand
+    +paragraph.mb-8.text-ink-lighter Use to display Brand.
+    +example.mb-8
+      +exampleDisplay
+        +brand
+      +exampleSourceCode.
+        +brand
+
+    +heading2(size=3).mb-1 CPR
+    +paragraph.mb-8.text-ink-lighter Use to display a CPR.
+    +example.mb-8
+      +exampleDisplay
+        +cpr("0410650276")
+        +cpr("0410650276", false)
+      +exampleSourceCode.
+        +cpr("0410650276")
+        +cpr("0410650276", false)
+
+    +heading2(size=3).mb-1 Date
+    +paragraph.mb-8.text-ink-lighter Use to display a date.
+    +example.mb-8
+      +exampleDisplay
+        +date(new Date())
+      +exampleSourceCode.
+        +date(new Date())
+
+    +heading2(size=3).mb-1 Date Time
+    +paragraph.mb-8.text-ink-lighter Use to display a date and time.
+    +example.mb-8
+      +exampleDisplay
+        +dateTime(new Date())
+      +exampleSourceCode.
+        +dateTime(new Date())
+
+    +heading2(size=3).mb-1 Email
+    +paragraph.mb-8.text-ink-lighter Use to display an email address.
+    +example.mb-8
+      +exampleDisplay
+        +email("terka@practio.com")
+      +exampleSourceCode.
+        +email("terka@practio.com")
+
+    +heading2(size=3).mb-1 Phone
+    +paragraph.mb-8.text-ink-lighter Use to display a phone number.
+    +example.mb-8
+      +exampleDisplay
+        +phone("20304050")
+      +exampleSourceCode.
+        +phone("20304050")
+
+    +heading2(size=3).mb-1 Name
+    +paragraph.mb-8.text-ink-lighter Use to display names.
+    +example.mb-8
+      +exampleDisplay
+        +name("Terka", "Frandsen")
+      +exampleSourceCode.
+        +name("Terka", "Frandsen")
+
+    +heading2(size=3).mb-1 Number
+    +paragraph.mb-8.text-ink-lighter Use to display numbers.
+    +example.mb-8
+      +exampleDisplay
+        +number(0)
+        +number(1)
+        +number(10)
+        +number(100)
+        +number(1000)
+      +exampleSourceCode.
+        +number(0)
+        +number(1)
+        +number(10)
+        +number(100)
+        +number(1000)
+
+    +heading2(size=3).mb-1 Text
+    +paragraph.mb-8.text-ink-lighter Use to display text.
+    +example.mb-8
+      +exampleDisplay
+        +text Lorem ipsum
+      +exampleSourceCode.
+        +text Lorem ipsum
+
+    +heading2(size=3).mb-1 Code
+    +paragraph.mb-8.text-ink-lighter Use to display code.
+    +example.mb-8
+      +exampleDisplay
+        +code(language="js").
+          function sum(a, b) {
+            return a + b
+          }
+      +exampleSourceCode.
+        +code(language="js").
+          function sum(a, b) {
+            return a + b
+          }
+
+    +heading3(size=3).mb-1 JSON
+    +paragraph.mb-8.text-ink-lighter Use to display JSON.
+    +example.mb-8
+      +exampleDisplay
+        +json({ foo: 1, bar: false })
+      +exampleSourceCode.
+        +json({ foo: 1, bar: false })
+
+    +heading3(size=3).mb-1 YAML
+    +paragraph.mb-8.text-ink-lighter Use to display YAML.
+    +example.mb-8
+      +exampleDisplay
+        +yaml({ foo: 1, bar: false })
+      +exampleSourceCode.
+        +yaml({ foo: 1, bar: false })
+
+    +heading3(size=3).mb-1 UUID
+    +paragraph.mb-8.text-ink-lighter Use to display UUIDs.
+    +example.mb-8
+      +exampleDisplay
+        +uuid("7aa5688c-7a0d-41f5-b263-b467960f8b22")
+      +exampleSourceCode.
+        +uuid("7aa5688c-7a0d-41f5-b263-b467960f8b22")
+
+
+mixin example
+  .shadow.rounded-lg.bg-white&attributes(attributes)
+    block
+
+mixin exampleDisplay
+  .p-6.rounded-t-lg.flex.flex-wrap.gap-4&attributes(attributes)
+    block
+
+mixin exampleSourceCode
+  .p-6.bg-sky-lighter.rounded-b-lg.overflow-auto
+    +heading4(size=5).mb-1 Pug:
+    +code(language="pug")&attributes(attributes)
+      block

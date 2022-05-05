@@ -1,0 +1,5 @@
+include ./text.pug
+
+mixin name(...names)
+  if names
+    +text&attributes(attributes)= names.join(' ')
