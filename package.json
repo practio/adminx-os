@@ -33,7 +33,7 @@
     "url": "git+https://github.com/practio/adminx.git"
   },
   "author": "Jonatan Pedersen",
-  "license": "",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/practio/adminx/issues"
   },
